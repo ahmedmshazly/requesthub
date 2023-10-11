@@ -1,8 +1,9 @@
 import sys
-from tkinter import messagebox
-from facilitator_view import FacilitatorLandingPageView
 sys.path.append('views')
 sys.path.append('models')
+from tkinter import messagebox
+from admin_view import AdminApp
+from facilitator_view import FacilitatorLandingPageView
 from login_view import LoginView
 from validator import Validator
 from database import Database
@@ -68,7 +69,6 @@ class LoginController:
                 messagebox.showinfo("Successful Login", "You have successfully logged in!")
 
                 # Additional actions after successful login...
-                self.go_to_student()
                 self.go_to_page(user_type)
             else:
                 # Login failed (incorrect password)
@@ -85,11 +85,7 @@ class LoginController:
             self.go_to_facilitator()
             pass
         elif user_type == 'admin':
-            # Redirect to admin page
-            pass
-        else:
-            # Handle unknown user type
-            pass
+            self.go_to_admin()
     
     def go_to_signup(self):
         # Switch to the sign-up view
@@ -98,6 +94,10 @@ class LoginController:
     def go_to_student(self):
         # Switch to the sign-up view
         StudentLandingPageView(self.master)
+    
+    def go_to_admin(self):
+        # Switch to the sign-up view
+        AdminApp(self.master)
     
     def go_to_facilitator(self):
         # Switch to the sign-up view
